@@ -163,31 +163,31 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="username"><strong>Nombre de Usuario</strong></label><input class="form-control" type="text" placeholder="user.name" name="username"></div>
+                                                    <div class="form-group"><label for="username"><strong>Nombre de Usuario</strong></label><input id="userName" class="form-control" type="text" placeholder="user.name" name="username"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="email"><strong>Correo Electronico</strong></label><input class="form-control" type="email" placeholder="user@example.com" name="email"></div>
+                                                    <div class="form-group"><label for="email"><strong>Correo Electronico</strong></label><input id="email" class="form-control" type="email" placeholder="user@example.com" name="email"></div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="first_name"><strong>Nombre(s)</strong></label><input class="form-control" type="text" placeholder="John" name="first_name"></div>
+                                                    <div class="form-group"><label for="first_name"><strong>Nombre(s)</strong></label><input id="firstName" class="form-control" type="text" placeholder="John" name="first_name"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="last_name"><strong>Apellido(s)</strong></label><input class="form-control" type="text" placeholder="Doe" name="last_name"></div>
+                                                    <div class="form-group"><label for="last_name"><strong>Apellido(s)</strong></label><input id="lastName" class="form-control" type="text" placeholder="Doe" name="last_name"></div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-body">
                                         <form>
-                                            <div class="form-group"><label for="address"><strong>Academia</strong></label><input class="form-control" type="text" placeholder="nombre.academia" name="address"></div>
+                                            <div class="form-group"><label for="address"><strong>Academia</strong></label><input id="academy" class="form-control" type="text" placeholder="nombre.academia" name="address"></div>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="city"><strong>Numero de Empleado</strong></label><input class="form-control" type="text" placeholder="numero.empleado" name="city"></div>
+                                                    <div class="form-group"><label for="city"><strong>Numero de Empleado</strong></label><input id="employeeNumber" class="form-control" type="text" placeholder="numero.empleado" name="city"></div>
                                                 </div>
                                             </div>
-                                            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Guardar Configuracion</button></div>
+                                            <div class="form-group"><button id="profileBtn" class="btn btn-primary btn-sm" type="button">Guardar Configuracion</button></div>
                                         </form>
                                     </div>
                                 </div>
@@ -210,6 +210,7 @@
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="profile.js"></script>
 </body>
 
 </html>

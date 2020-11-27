@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -16,7 +16,7 @@ function createWindow () {
   mainWindow.loadFile('pages/stadistics.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -39,5 +39,15 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// Mongo DB
+module.exports = { createWindow };
+
+// Task
+const User = require("./models/User");
+
+ipcMain.on("new-user", async (e, arg) => {
+  const newUser = new User(arg);
+  const userSaved = await newUser.save();
+  console.log(userSaved);
+  e.reply("new-user-created", JSON.stringify(userSaved));
+});
