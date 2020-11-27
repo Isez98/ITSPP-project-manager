@@ -10,7 +10,6 @@ const employeeNumber = document.querySelector("#employeeNumber");
 
 
 profileBtn.addEventListener("click", async e => {
-    console.log("antes");
     e.preventDefault();
   
     const user = {
@@ -23,7 +22,6 @@ profileBtn.addEventListener("click", async e => {
     };
   
     ipcRenderer.send("new-user", user);
-    console.log("despues");
   });
 
   
