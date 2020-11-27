@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
-const path = require('path')
+const path = require('path');
+const User = require("./models/User");
 
 function createWindow () {
   // Create the browser window.
@@ -8,6 +9,7 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
+      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
@@ -40,14 +42,14 @@ app.on('window-all-closed', function () {
 })
 
 // Mongo DB
-module.exports = { createWindow };
-
 // Task
-const User = require("./models/User");
 
 ipcMain.on("new-user", async (e, arg) => {
+  console.log(arg)
   const newUser = new User(arg);
   const userSaved = await newUser.save();
   console.log(userSaved);
   e.reply("new-user-created", JSON.stringify(userSaved));
 });
+
+module.exports = { createWindow };
