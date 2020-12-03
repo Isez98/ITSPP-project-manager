@@ -61,4 +61,10 @@ ipcMain.on("new-proyect", async (e, arg) => {
   e.reply("new-proyect-created", JSON.stringify(proyectSaved));
 });
 
+ipcMain.on("get-proyects", async (e, arg) => {
+  const proyects = await Proyect.find();
+  console.log(proyects);
+  e.reply("get-proyects", JSON.stringify(proyects));
+});
+
 module.exports = { createWindow };
