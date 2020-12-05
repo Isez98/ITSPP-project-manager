@@ -2,6 +2,19 @@ const { ipcRenderer } = require("electron");
 
 const dataTable = document.querySelector('#dataTable');
 
+
+
+function sendIdProyect(id) {
+    console.log("POR ACTUALIZAR", id);
+
+    var idToSend = id;
+    sessionStorage.setItem("idToSend", idToSend);
+
+    location.href='registerProyect.html';
+}
+
+let proyects = [];
+
 function renderProyects(proyects){
     dataTable.innerHTML = '';
     let table = `
@@ -21,7 +34,7 @@ function renderProyects(proyects){
     `;
     proyects.map(t => {
         table = table +
-        `<tr>
+        `<tr onclick="sendIdProyect('${t._id}')">
           <td>${t.proyectName}</td>
           <td>${t.startDate}</td>
           <td>${t.typeProyect}</td>
@@ -38,10 +51,17 @@ function renderProyects(proyects){
     dataTable.innerHTML = table;
 }
 
+ipcRenderer.on("new-task-created", (e, arg) => {
+    const newProyect = JSON.parse(arg);
+    proyects.push(newProyect);
+    renderProyects(proyects);
+    alert("Proyecto creado exitosamente");
+  });
+
 ipcRenderer.send('get-proyects');
 
 ipcRenderer.on('get-proyects', (e,arg) =>{
-    const proyects = JSON.parse(arg);
+    const proyectsReceived = JSON.parse(arg);
+    proyects = proyectsReceived;
     renderProyects(proyects);
-    console.log(proyects);
 });
