@@ -12,7 +12,9 @@ let updateStatus = false;
 let idProyectToUpdate = '';
 
 window.onload = function() {
-    editProyect();
+    if(idToSend){
+        editProyect();
+    }
 };
 
 let proyectsList = [];
@@ -97,7 +99,7 @@ ipcRenderer.on('get-proyects', (e,arg) =>{
     const proyectsReceived = JSON.parse(arg);
     proyects = proyectsReceived;
     proyectsList = proyectsReceived;
-    editProyect(proyects);
+/*     editProyect(proyects); */
 });
 
 ipcRenderer.on("update-proyect-success", (e, args) => {
@@ -118,6 +120,8 @@ ipcRenderer.on("update-proyect-success", (e, args) => {
         t.firstNameContact = updatedProyect.firstNameContact;
         t.lastNameContact = updatedProyect.lastNameContact;
       }
+      updateStatus = false
+      sessionStorage.clear();
       return t;
     });
   });
