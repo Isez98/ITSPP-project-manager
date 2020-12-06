@@ -46,19 +46,48 @@ app.on('window-all-closed', function () {
 // Task
 
 ipcMain.on("new-user", async (e, arg) => {
-  console.log(arg)
   const newUser = new User(arg);
   const userSaved = await newUser.save();
-  console.log(userSaved);
   e.reply("new-user-created", JSON.stringify(userSaved));
 });
 
 ipcMain.on("new-proyect", async (e, arg) => {
-  console.log(arg)
   const newProyect = new Proyect(arg);
   const proyectSaved = await newProyect.save();
-  console.log(proyectSaved);
   e.reply("new-proyect-created", JSON.stringify(proyectSaved));
+});
+
+ipcMain.on("get-proyects", async (e, arg) => {
+  const proyects = await Proyect.find();
+  e.reply("get-proyects", JSON.stringify(proyects));
+});
+
+ipcMain.on("delete-proyect", async (e, args) => {
+  const proyectDeleted = await Proyect.findByIdAndDelete(args);
+  e.reply("delete-proyect-success", JSON.stringify(proyectDeleted));
+});
+
+ipcMain.on("update-proyect", async (e, args) => {
+  console.log(args);
+  const updatedProyect = await Proyect.findByIdAndUpdate(
+    args.idProyectToUpdate,
+    { 
+      proyectName: args.proyectName, 
+      releaseDate: args.releaseDate,
+      startDate: args.startDate,
+      conclusionDate: args.conclusionDate,
+      typeProyect: args.typeProyect,
+      objectiveProject: args.objectiveProject,
+      statusProject: args.statusProject,
+      projectComment: args.projectComment,
+      enterpriseProject: args.enterpriseProject,
+      enterpriseContact: args.enterpriseContact,
+      firstNameContact: args.firstNameContact,
+      lastNameContact: args.lastNameContact,
+    },
+    { new: true }
+  );
+  e.reply("update-proyect-success", JSON.stringify(updatedProyect));
 });
 
 module.exports = { createWindow };

@@ -27,7 +27,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="registerProyect.html"><i class="far fa-edit"></i><span>Registro de Proyectos</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="registerProyect.html"><i class="far fa-edit"></i><span>Gestor de Proyectos</span></a></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                            <table class="table dataTable my-0" id="dataTable">
+                            <table id="dataTable" class="table dataTable my-0 table-hover" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -117,7 +117,7 @@
                                         <th>Salary</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="dataTable">
                                     <tr>
                                         <td><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/avatars/avatar1.jpeg">Airi Satou</td>
                                         <td>Accountant</td>
@@ -243,6 +243,7 @@
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="proyects.js"></script>
 </body>
 
 </html>
